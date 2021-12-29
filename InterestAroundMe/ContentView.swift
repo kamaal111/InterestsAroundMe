@@ -6,18 +6,19 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct ContentView: View {
     var body: some View {
         NavigationView {
-            Text("Hello world!")
+            HomeScreen()
         }
+        .navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+        ContentView()
+            .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
     }
 }

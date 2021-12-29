@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C3E88C2277B5FF30040681E /* ShrimpExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 2C3E88C1277B5FF30040681E /* ShrimpExtensions */; };
+		2C517A2E277C7E910033F791 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C517A2D277C7E910033F791 /* HomeScreen.swift */; };
+		2C517A30277C7F220033F791 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C517A2F277C7F220033F791 /* Config.swift */; };
 		2CCCCA0D277B3C34006185EA /* InterestAroundMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCCCA0C277B3C34006185EA /* InterestAroundMeApp.swift */; };
 		2CCCCA0F277B3C34006185EA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCCCA0E277B3C34006185EA /* ContentView.swift */; };
 		2CCCCA11277B3C3C006185EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CCCCA10277B3C3C006185EA /* Assets.xcassets */; };
@@ -17,8 +20,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C517A2D277C7E910033F791 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		2C517A2F277C7F220033F791 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		2CB2E632277B57FB00442AFB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2CB2E633277B581400442AFB /* pre_compile.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = pre_compile.sh; sourceTree = "<group>"; };
+		2CB2E636277B5F3900442AFB /* URLs.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = URLs.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		2CCCCA09277B3C33006185EA /* Interests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Interests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2CCCCA0C277B3C34006185EA /* InterestAroundMeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestAroundMeApp.swift; sourceTree = "<group>"; };
 		2CCCCA0E277B3C34006185EA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -35,12 +41,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CCCCA23277B3C8B006185EA /* IAMNetworker in Frameworks */,
+				2C3E88C2277B5FF30040681E /* ShrimpExtensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C517A2B277C7E6C0033F791 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2C517A2C277C7E800033F791 /* Screens */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2C517A2C277C7E800033F791 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				2C517A2D277C7E910033F791 /* HomeScreen.swift */,
+			);
+			path = Screens;
+			sourceTree = "<group>";
+		};
 		2CB2E62E277B56BF00442AFB /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -73,6 +96,14 @@
 			path = Scripts;
 			sourceTree = "<group>";
 		};
+		2CB2E635277B5F2600442AFB /* Playgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				2CB2E636277B5F3900442AFB /* URLs.playground */,
+			);
+			path = Playgrounds;
+			sourceTree = "<group>";
+		};
 		2CCCCA00277B3C33006185EA = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +111,7 @@
 				2CCCCA21277B3C8B006185EA /* Frameworks */,
 				2CCCCA0B277B3C33006185EA /* InterestAroundMe */,
 				2CCCCA1F277B3C4D006185EA /* Packages */,
+				2CB2E635277B5F2600442AFB /* Playgrounds */,
 				2CCCCA0A277B3C33006185EA /* Products */,
 				2CB2E631277B57EB00442AFB /* Scripts */,
 			);
@@ -96,12 +128,14 @@
 		2CCCCA0B277B3C33006185EA /* InterestAroundMe */ = {
 			isa = PBXGroup;
 			children = (
+				2C517A2F277C7F220033F791 /* Config.swift */,
 				2CCCCA0E277B3C34006185EA /* ContentView.swift */,
 				2CCCCA0C277B3C34006185EA /* InterestAroundMeApp.swift */,
 				2CCCCA10277B3C3C006185EA /* Assets.xcassets */,
 				2CB2E62F277B56CC00442AFB /* Models */,
 				2CCCCA12277B3C3C006185EA /* Preview Content */,
 				2CB2E62E277B56BF00442AFB /* Utilities */,
+				2C517A2B277C7E6C0033F791 /* View */,
 			);
 			path = InterestAroundMe;
 			sourceTree = "<group>";
@@ -148,6 +182,7 @@
 			name = InterestAroundMe;
 			packageProductDependencies = (
 				2CCCCA22277B3C8B006185EA /* IAMNetworker */,
+				2C3E88C1277B5FF30040681E /* ShrimpExtensions */,
 			);
 			productName = InterestAroundMe;
 			productReference = 2CCCCA09277B3C33006185EA /* Interests.app */;
@@ -177,6 +212,9 @@
 				Base,
 			);
 			mainGroup = 2CCCCA00277B3C33006185EA;
+			packageReferences = (
+				2C3E88C0277B5FF30040681E /* XCRemoteSwiftPackageReference "ShrimpExtensions" */,
+			);
 			productRefGroup = 2CCCCA0A277B3C33006185EA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -225,9 +263,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CCCCA16277B3C3C006185EA /* Persistence.swift in Sources */,
+				2C517A2E277C7E910033F791 /* HomeScreen.swift in Sources */,
 				2CCCCA0F277B3C34006185EA /* ContentView.swift in Sources */,
 				2CCCCA19277B3C3C006185EA /* InterestAroundMe.xcdatamodeld in Sources */,
 				2CCCCA0D277B3C34006185EA /* InterestAroundMeApp.swift in Sources */,
+				2C517A30277C7F220033F791 /* Config.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -433,7 +473,23 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCRemoteSwiftPackageReference section */
+		2C3E88C0277B5FF30040681E /* XCRemoteSwiftPackageReference "ShrimpExtensions" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kamaal111/ShrimpExtensions.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		2C3E88C1277B5FF30040681E /* ShrimpExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2C3E88C0277B5FF30040681E /* XCRemoteSwiftPackageReference "ShrimpExtensions" */;
+			productName = ShrimpExtensions;
+		};
 		2CCCCA22277B3C8B006185EA /* IAMNetworker */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = IAMNetworker;
