@@ -6,16 +6,36 @@
 //
 
 import SwiftUI
-import IAMNetworker
+import PopperUp
+import os.log
 
 struct HomeScreen: View {
+    @EnvironmentObject
+    private var popperUpManager: PopperUpManager
+
+    @StateObject private var viewModel = ViewModel()
+
+    private let preview: Bool
+
+    init(preview: Bool = false) {
+        self.preview = preview
+    }
+
     var body: some View {
-        Text("Hello world!")
+        VStack {
+            Text("Hello world!")
+        }
         .onAppear(perform: {
-            let networker = IAMNetworker(foursquareAPIKey: Config.foursquareApiKey, kowalskiAnalysis: false)
             Task {
-                let result = await networker.findNearbyPlaces(of: (41.8781, -87.6298), limitTo: 5, preview: true)
-                print(result)
+                do {
+                    try await viewModel.loadViewData(preview: preview)
+                } catch {
+                    Logger.homeScreen.error("Hello \(error.localizedDescription)")
+                    popperUpManager.showPopup(
+                        ofType: .error,
+                        title: "Sorry",
+                        description: "Something went wrong while fetching data")
+                }
             }
         })
     }
@@ -23,6 +43,7 @@ struct HomeScreen: View {
 
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        HomeScreen()
+        HomeScreen(preview: true)
+            .withPopperUp(PopperUpManager())
     }
 }

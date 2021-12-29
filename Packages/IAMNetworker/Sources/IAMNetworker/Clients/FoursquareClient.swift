@@ -7,6 +7,7 @@
 
 import Foundation
 import XiphiasNet
+import ShrimpExtensions
 
 struct FoursquareClient {
     var apiKey: String

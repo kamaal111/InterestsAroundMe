@@ -20,13 +20,24 @@ public struct IAMNetworker {
         self.kowalskiAnalysis = kowalskiAnalysis
     }
 
-    public enum IAMNetworkerErrors: Error {
+    public enum IAMNetworkerErrors: Error, LocalizedError {
         case generalError(error: Error)
         case responseError(message: String, code: Int)
         case notAValidJSON
         case parsingError(error: Error)
         case invalidURL(url: String)
         case foursquareNotAuthorized
+
+        public var errorDescription: String {
+            switch self {
+            case let  .generalError(error): return "Unknown error of \(error)"
+            case let .responseError(message, code): return "\(message); status: \(code)"
+            case .notAValidJSON: return "Invalid JSON response"
+            case let .parsingError(error): return "JSON parsing error; error: \(error)"
+            case let .invalidURL(url): return "Invalid url provided of \(url)"
+            case .foursquareNotAuthorized: return "Networker not initialized with API token"
+            }
+        }
     }
 
     public func findNearbyPlaces(

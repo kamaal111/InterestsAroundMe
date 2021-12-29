@@ -7,9 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C2C8807277C876D0028E592 /* Logger+extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2C8806277C876D0028E592 /* Logger+extensions.swift */; };
 		2C3E88C2277B5FF30040681E /* ShrimpExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = 2C3E88C1277B5FF30040681E /* ShrimpExtensions */; };
 		2C517A2E277C7E910033F791 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C517A2D277C7E910033F791 /* HomeScreen.swift */; };
 		2C517A30277C7F220033F791 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C517A2F277C7F220033F791 /* Config.swift */; };
+		2C517A34277C805C0033F791 /* HomeScreen+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C517A33277C805C0033F791 /* HomeScreen+ViewModel.swift */; };
+		2C517A36277C83100033F791 /* Features.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C517A35277C83100033F791 /* Features.swift */; };
 		2CCCCA0D277B3C34006185EA /* InterestAroundMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCCCA0C277B3C34006185EA /* InterestAroundMeApp.swift */; };
 		2CCCCA0F277B3C34006185EA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCCCA0E277B3C34006185EA /* ContentView.swift */; };
 		2CCCCA11277B3C3C006185EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CCCCA10277B3C3C006185EA /* Assets.xcassets */; };
@@ -17,11 +20,16 @@
 		2CCCCA16277B3C3C006185EA /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCCCA15277B3C3C006185EA /* Persistence.swift */; };
 		2CCCCA19277B3C3C006185EA /* InterestAroundMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2CCCCA17277B3C3C006185EA /* InterestAroundMe.xcdatamodeld */; };
 		2CCCCA23277B3C8B006185EA /* IAMNetworker in Frameworks */ = {isa = PBXBuildFile; productRef = 2CCCCA22277B3C8B006185EA /* IAMNetworker */; };
+		2CDDD5B6277C84D400B9C303 /* PopperUp in Frameworks */ = {isa = PBXBuildFile; productRef = 2CDDD5B5277C84D400B9C303 /* PopperUp */; };
+		2CDDD5B9277C84F200B9C303 /* SalmonUI in Frameworks */ = {isa = PBXBuildFile; productRef = 2CDDD5B8277C84F200B9C303 /* SalmonUI */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2C2C8806277C876D0028E592 /* Logger+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+extensions.swift"; sourceTree = "<group>"; };
 		2C517A2D277C7E910033F791 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		2C517A2F277C7F220033F791 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		2C517A33277C805C0033F791 /* HomeScreen+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeScreen+ViewModel.swift"; sourceTree = "<group>"; };
+		2C517A35277C83100033F791 /* Features.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features.swift; sourceTree = "<group>"; };
 		2CB2E632277B57FB00442AFB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2CB2E633277B581400442AFB /* pre_compile.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = pre_compile.sh; sourceTree = "<group>"; };
 		2CB2E636277B5F3900442AFB /* URLs.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = URLs.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -40,7 +48,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CDDD5B9277C84F200B9C303 /* SalmonUI in Frameworks */,
 				2CCCCA23277B3C8B006185EA /* IAMNetworker in Frameworks */,
+				2CDDD5B6277C84D400B9C303 /* PopperUp in Frameworks */,
 				2C3E88C2277B5FF30040681E /* ShrimpExtensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -48,6 +58,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2C2C8805277C875C0028E592 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2C2C8806277C876D0028E592 /* Logger+extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		2C517A2B277C7E6C0033F791 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +82,14 @@
 			path = Screens;
 			sourceTree = "<group>";
 		};
+		2C517A31277C80330033F791 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				2C517A33277C805C0033F791 /* HomeScreen+ViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
 		2CB2E62E277B56BF00442AFB /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -75,6 +101,7 @@
 		2CB2E62F277B56CC00442AFB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				2C517A31277C80330033F791 /* ViewModels */,
 				2CB2E630277B56D200442AFB /* CoreData */,
 			);
 			path = Models;
@@ -128,8 +155,10 @@
 		2CCCCA0B277B3C33006185EA /* InterestAroundMe */ = {
 			isa = PBXGroup;
 			children = (
+				2C2C8805277C875C0028E592 /* Extensions */,
 				2C517A2F277C7F220033F791 /* Config.swift */,
 				2CCCCA0E277B3C34006185EA /* ContentView.swift */,
+				2C517A35277C83100033F791 /* Features.swift */,
 				2CCCCA0C277B3C34006185EA /* InterestAroundMeApp.swift */,
 				2CCCCA10277B3C3C006185EA /* Assets.xcassets */,
 				2CB2E62F277B56CC00442AFB /* Models */,
@@ -183,6 +212,8 @@
 			packageProductDependencies = (
 				2CCCCA22277B3C8B006185EA /* IAMNetworker */,
 				2C3E88C1277B5FF30040681E /* ShrimpExtensions */,
+				2CDDD5B5277C84D400B9C303 /* PopperUp */,
+				2CDDD5B8277C84F200B9C303 /* SalmonUI */,
 			);
 			productName = InterestAroundMe;
 			productReference = 2CCCCA09277B3C33006185EA /* Interests.app */;
@@ -214,6 +245,8 @@
 			mainGroup = 2CCCCA00277B3C33006185EA;
 			packageReferences = (
 				2C3E88C0277B5FF30040681E /* XCRemoteSwiftPackageReference "ShrimpExtensions" */,
+				2CDDD5B4277C84D400B9C303 /* XCRemoteSwiftPackageReference "PopperUp" */,
+				2CDDD5B7277C84F200B9C303 /* XCRemoteSwiftPackageReference "SalmonUI" */,
 			);
 			productRefGroup = 2CCCCA0A277B3C33006185EA /* Products */;
 			projectDirPath = "";
@@ -262,12 +295,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C517A36277C83100033F791 /* Features.swift in Sources */,
 				2CCCCA16277B3C3C006185EA /* Persistence.swift in Sources */,
 				2C517A2E277C7E910033F791 /* HomeScreen.swift in Sources */,
 				2CCCCA0F277B3C34006185EA /* ContentView.swift in Sources */,
 				2CCCCA19277B3C3C006185EA /* InterestAroundMe.xcdatamodeld in Sources */,
 				2CCCCA0D277B3C34006185EA /* InterestAroundMeApp.swift in Sources */,
+				2C2C8807277C876D0028E592 /* Logger+extensions.swift in Sources */,
 				2C517A30277C7F220033F791 /* Config.swift in Sources */,
+				2C517A34277C805C0033F791 /* HomeScreen+ViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,6 +518,22 @@
 				minimumVersion = 2.3.0;
 			};
 		};
+		2CDDD5B4277C84D400B9C303 /* XCRemoteSwiftPackageReference "PopperUp" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kamaal111/PopperUp.git";
+			requirement = {
+				kind = upToNextMinorVersion;
+				minimumVersion = 0.1.0;
+			};
+		};
+		2CDDD5B7277C84F200B9C303 /* XCRemoteSwiftPackageReference "SalmonUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/kamaal111/SalmonUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -493,6 +545,16 @@
 		2CCCCA22277B3C8B006185EA /* IAMNetworker */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = IAMNetworker;
+		};
+		2CDDD5B5277C84D400B9C303 /* PopperUp */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CDDD5B4277C84D400B9C303 /* XCRemoteSwiftPackageReference "PopperUp" */;
+			productName = PopperUp;
+		};
+		2CDDD5B8277C84F200B9C303 /* SalmonUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CDDD5B7277C84F200B9C303 /* XCRemoteSwiftPackageReference "SalmonUI" */;
+			productName = SalmonUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 

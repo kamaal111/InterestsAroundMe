@@ -6,13 +6,17 @@
 //
 
 import SwiftUI
+import PopperUp
 
 struct ContentView: View {
+    @StateObject private var popperUpManager = PopperUpManager()
+
     var body: some View {
         NavigationView {
-            HomeScreen()
+            HomeScreen(preview: Features.previewFoursqareData)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .withPopperUp(popperUpManager)
     }
 }
 
