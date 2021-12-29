@@ -23,21 +23,29 @@ struct HomeScreen: View {
 
     var body: some View {
         VStack {
-            Text("Hello world!")
-        }
-        .onAppear(perform: {
-            Task {
-                do {
-                    try await viewModel.loadViewData(preview: preview)
-                } catch {
-                    Logger.homeScreen.error("Hello \(error.localizedDescription)")
-                    popperUpManager.showPopup(
-                        ofType: .error,
-                        title: "Sorry",
-                        description: "Something went wrong while fetching data")
+            List {
+                ForEach(viewModel.places) { place in
+                    InterestPlace(place: place, action: { print(place) })
                 }
             }
-        })
+        }
+        .navigationTitle(Text("Interests"))
+        .navigationBarTitleDisplayMode(.large)
+        .onAppear(perform: handleOnAppear)
+    }
+
+    private func handleOnAppear() {
+        Task {
+            do {
+                try await viewModel.loadViewData(preview: preview)
+            } catch {
+                Logger.homeScreen.error("Hello \(error.localizedDescription)")
+                popperUpManager.showPopup(
+                    ofType: .error,
+                    title: "Sorry",
+                    description: "Something went wrong while fetching data")
+            }
+        }
     }
 }
 
