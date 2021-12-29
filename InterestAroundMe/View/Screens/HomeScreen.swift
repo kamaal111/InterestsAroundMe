@@ -25,7 +25,10 @@ struct HomeScreen: View {
         VStack {
             List {
                 ForEach(viewModel.places) { place in
-                    InterestPlace(place: place, action: { print(place) })
+                    InterestPlace(
+                        place: place,
+                        imageData: viewModel.getExtraSmallCategoryIconImageData(place.categories.first),
+                        action: { print(place) })
                 }
             }
         }

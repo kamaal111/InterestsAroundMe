@@ -42,6 +42,18 @@ public struct IAMNPlaceCategory: Codable, Hashable, Identifiable {
 public struct IAMNPlaceCategoryIcon: Codable, Hashable {
     public var prefix: String
     public var suffix: String
+
+    public enum IconSizes: Int {
+        case extraSmall = 32
+        case small = 44
+        case medium = 64
+        case large = 88
+        case extraLarge = 120
+    }
+
+    public func iconURL(ofSize size: IconSizes) -> URL? {
+        URL(string: "\(prefix)bg_\(size.rawValue)\(suffix)")
+    }
 }
 
 public struct IAMNGeocodes: Codable, Hashable {

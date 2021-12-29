@@ -112,8 +112,8 @@
 		2CB2E62F277B56CC00442AFB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				2C517A31277C80330033F791 /* ViewModels */,
 				2CB2E630277B56D200442AFB /* CoreData */,
+				2C517A31277C80330033F791 /* ViewModels */,
 			);
 			path = Models;
 			sourceTree = "<group>";
