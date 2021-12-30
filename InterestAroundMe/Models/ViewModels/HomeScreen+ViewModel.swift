@@ -14,6 +14,7 @@ extension HomeScreen {
     final class ViewModel: ObservableObject {
         @Published private(set) var places: [IAMNPlace] = []
         @Published private(set) var categoryIcons: [String: Data] = [:]
+        @Published var loadingData = false
 
         private var initialViewDataLoaded = false
 
@@ -32,13 +33,16 @@ extension HomeScreen {
             preview: Bool = false) async -> Result<Void, IAMNetworker.IAMNetworkerErrors> {
                 guard !initialViewDataLoaded else { return .success(Void()) }
 
+                loadingData = true
                 let result = await networker.findNearbyPlaces(
                     of: userCoordinates,
                     limitTo: Features.initialPlacesLimit,
                     preview: preview)
                 let places: [IAMNPlace]
                 switch result {
-                case .failure(let failure): return .failure(failure)
+                case .failure(let failure):
+                    loadingData = false
+                    return .failure(failure)
                 case .success(let success): places = success.results
                 }
 
@@ -46,6 +50,8 @@ extension HomeScreen {
                 self.places = places
 
                 loadCategoryIcons(fromPlaces: places)
+
+                loadingData = false
                 return .success(Void())
             }
 

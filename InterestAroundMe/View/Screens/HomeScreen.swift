@@ -9,6 +9,7 @@ import SwiftUI
 import PopperUp
 import os.log
 import CoreLocation
+import SalmonUI
 
 struct HomeScreen: View {
     @EnvironmentObject
@@ -32,6 +33,9 @@ struct HomeScreen: View {
                     Text("We need your current location to get the nearby venues")
                         .font(.title3)
                         .bold()
+                } else if viewModel.loadingData {
+                    KActivityIndicator(isAnimating: $viewModel.loadingData, style: .large)
+                        .ktakeSizeEagerly(alignment: .center)
                 } else if viewModel.places.isEmpty {
                     Text("No nearby venues")
                         .font(.title3)
