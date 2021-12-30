@@ -12,6 +12,7 @@ import os.log
 extension HomeScreen {
     @MainActor
     final class ViewModel: ObservableObject {
+
         @Published private(set) var places: [IAMNPlace] = []
         @Published private(set) var categoryIcons: [String: Data] = [:]
         @Published var loadingData = false
@@ -81,5 +82,6 @@ extension HomeScreen {
                 self.categoryIcons = categoryIcons
             }
         }
+
     }
 }
