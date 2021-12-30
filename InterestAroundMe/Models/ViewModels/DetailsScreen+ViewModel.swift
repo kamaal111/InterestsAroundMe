@@ -26,6 +26,14 @@ extension DetailsScreen {
 
         init() { }
 
+        var showLocationSection: Bool {
+            guard let location = place?.location else { return false }
+            return (location.address != nil
+                    || location.locality != nil
+                    || (!(location.neighborhood ?? []).isEmpty)
+                    || location.region != nil)
+        }
+
         func setPreview(_ preview: Bool) {
             self.preview = preview
         }

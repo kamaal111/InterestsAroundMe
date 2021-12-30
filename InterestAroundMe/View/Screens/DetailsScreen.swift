@@ -9,6 +9,7 @@ import SwiftUI
 import IAMNetworker
 import PopperUp
 import SalmonUI
+import os.log
 
 struct DetailsScreen: View {
     @EnvironmentObject
@@ -40,11 +41,12 @@ struct DetailsScreen: View {
                     .padding(.top, 8)
                     .padding(.leading, 4)
             }
-            if let location = viewModel.place?.location,
-                (location.address != nil
-                 || location.locality != nil
-                 || (!(location.neighborhood ?? []).isEmpty)
-                 || location.region != nil) {
+            if !viewModel.tips.isEmpty {
+                DetailsTipsSection(tips: viewModel.tips)
+                    .padding(.top, 8)
+                    .padding(.leading, 4)
+            }
+            if let location = viewModel.place?.location, viewModel.showLocationSection {
                 DetailsLocationSection(location: location)
                     .padding(.vertical, 8)
                     .padding(.leading, 4)
@@ -68,8 +70,10 @@ struct DetailsScreen: View {
         })
         .onAppear(perform: {
             viewModel.setPreview(preview)
-            guard let place = stackNavigator.currentOptions?["place"] as? IAMNPlace else { return }
-            print(place)
+            guard let place = stackNavigator.currentOptions?["place"] as? IAMNPlace else {
+                Logger.detailScreen.warning("place is not in current options; \(stackNavigator.currentOptions ?? [:])")
+                return
+            }
             viewModel.setPlace(place)
         })
     }
