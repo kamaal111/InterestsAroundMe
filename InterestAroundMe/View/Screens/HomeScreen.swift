@@ -17,6 +17,7 @@ struct HomeScreen: View {
     private var locationManager: LocationManager
 
     @StateObject private var viewModel = ViewModel()
+    @StateObject private var stackNavigator = StackNavigator()
 
     private let preview: Bool
 
@@ -31,7 +32,7 @@ struct HomeScreen: View {
                     InterestPlace(
                         place: place,
                         imageData: viewModel.getExtraSmallCategoryIconImageData(place.categories.first),
-                        action: { print(place) })
+                        action: { stackNavigator.navigate(to: .details, options: ["place": place]) })
                 }
             }
         }
@@ -40,6 +41,7 @@ struct HomeScreen: View {
         .onAppear(perform: handleOnAppear)
         .onChange(of: locationManager.error, perform: handleLocationErrorChange(_:))
         .onChange(of: locationManager.userLocation, perform: loadInitialViewData(_:))
+        .withNavigationPoints(selectedScreen: $stackNavigator.selectedScreen, stackNavigator: stackNavigator)
     }
 
     private func handleLocationErrorChange(_ newValue: LocationManager.Errors?) {

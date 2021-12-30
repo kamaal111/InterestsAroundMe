@@ -15,6 +15,9 @@
 		2C517A34277C805C0033F791 /* HomeScreen+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C517A33277C805C0033F791 /* HomeScreen+ViewModel.swift */; };
 		2C517A36277C83100033F791 /* Features.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C517A35277C83100033F791 /* Features.swift */; };
 		2C748783277DD0E200E78934 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C748782277DD0E200E78934 /* LocationManager.swift */; };
+		2C748785277DE4B100E78934 /* StackNavigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C748784277DE4B100E78934 /* StackNavigator.swift */; };
+		2C748787277DE50300E78934 /* View+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C748786277DE50300E78934 /* View+Extensions.swift */; };
+		2C748789277DE68100E78934 /* DetailsScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C748788277DE68100E78934 /* DetailsScreen.swift */; };
 		2CCCCA0D277B3C34006185EA /* InterestAroundMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCCCA0C277B3C34006185EA /* InterestAroundMeApp.swift */; };
 		2CCCCA0F277B3C34006185EA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCCCA0E277B3C34006185EA /* ContentView.swift */; };
 		2CCCCA11277B3C3C006185EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CCCCA10277B3C3C006185EA /* Assets.xcassets */; };
@@ -35,6 +38,9 @@
 		2C517A33277C805C0033F791 /* HomeScreen+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeScreen+ViewModel.swift"; sourceTree = "<group>"; };
 		2C517A35277C83100033F791 /* Features.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features.swift; sourceTree = "<group>"; };
 		2C748782277DD0E200E78934 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		2C748784277DE4B100E78934 /* StackNavigator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackNavigator.swift; sourceTree = "<group>"; };
+		2C748786277DE50300E78934 /* View+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Extensions.swift"; sourceTree = "<group>"; };
+		2C748788277DE68100E78934 /* DetailsScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsScreen.swift; sourceTree = "<group>"; };
 		2CB2E632277B57FB00442AFB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2CB2E633277B581400442AFB /* pre_compile.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = pre_compile.sh; sourceTree = "<group>"; };
 		2CB2E636277B5F3900442AFB /* URLs.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = URLs.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -67,6 +73,7 @@
 			isa = PBXGroup;
 			children = (
 				2C2C8806277C876D0028E592 /* Logger+extensions.swift */,
+				2C748786277DE50300E78934 /* View+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -91,6 +98,7 @@
 		2C517A2C277C7E800033F791 /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				2C748788277DE68100E78934 /* DetailsScreen.swift */,
 				2C517A2D277C7E910033F791 /* HomeScreen.swift */,
 			);
 			path = Screens;
@@ -108,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				2C748782277DD0E200E78934 /* LocationManager.swift */,
+				2C748784277DE4B100E78934 /* StackNavigator.swift */,
 			);
 			path = Environment;
 			sourceTree = "<group>";
@@ -325,8 +334,11 @@
 				2C748783277DD0E200E78934 /* LocationManager.swift in Sources */,
 				2CCCCA0F277B3C34006185EA /* ContentView.swift in Sources */,
 				2CCCCA19277B3C3C006185EA /* InterestAroundMe.xcdatamodeld in Sources */,
+				2C748789277DE68100E78934 /* DetailsScreen.swift in Sources */,
 				2CCCCA0D277B3C34006185EA /* InterestAroundMeApp.swift in Sources */,
 				2C2C8807277C876D0028E592 /* Logger+extensions.swift in Sources */,
+				2C748785277DE4B100E78934 /* StackNavigator.swift in Sources */,
+				2C748787277DE50300E78934 /* View+Extensions.swift in Sources */,
 				2C2C880A277C8BD30028E592 /* InterestPlace.swift in Sources */,
 				2C517A30277C7F220033F791 /* Config.swift in Sources */,
 				2C517A34277C805C0033F791 /* HomeScreen+ViewModel.swift in Sources */,
