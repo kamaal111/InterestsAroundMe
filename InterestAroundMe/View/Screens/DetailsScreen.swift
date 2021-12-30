@@ -25,7 +25,7 @@ struct DetailsScreen: View {
     }
 
     var body: some View {
-        VStack {
+        VStack(alignment: .leading) {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(viewModel.photos, id: \.self) { photo in
@@ -34,10 +34,19 @@ struct DetailsScreen: View {
                     }
                 }
             }
+            if let categories = viewModel.place?.categories, !categories.isEmpty {
+                DetailsCategoriesSection(categories: categories)
+                    .padding(.top, 8)
+                    .padding(.leading, 4)
+            }
+            VStack(alignment: .leading) {
+                
+            }
+            .padding(.vertical, 8)
         }
         .padding(.horizontal, 8)
         .padding(.top, 16)
-        .ktakeSizeEagerly(alignment: .top)
+        .ktakeSizeEagerly(alignment: .topLeading)
         .navigationTitle(Text(viewModel.place?.name ?? "Details"))
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: viewModel.error, perform: { newValue in
