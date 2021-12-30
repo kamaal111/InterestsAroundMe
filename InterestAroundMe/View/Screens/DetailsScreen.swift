@@ -12,6 +12,8 @@ struct DetailsScreen: View {
     @EnvironmentObject
     private var stackNavigator: StackNavigator
 
+    @StateObject private var viewModel = ViewModel()
+
     var body: some View {
         VStack {
             Text("Hello, World!")

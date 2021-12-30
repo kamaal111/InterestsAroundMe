@@ -311,8 +311,12 @@ extension IAMNPlacesResult {
   ]
 }
 """.data(using: .utf8)
-        guard let data = data, let decodedData = try? JSONDecoder().decode(Self.self, from: data) else {
-            fatalError("something is wrong with the preview data")
+        guard let data = data else { fatalError("something is wrong with the preview data") }
+        let decodedData: Self
+        do {
+            decodedData = try JSONDecoder().decode(Self.self, from: data)
+        } catch {
+            fatalError("\(error.localizedDescription); error: \(error)")
         }
         return decodedData
     }()

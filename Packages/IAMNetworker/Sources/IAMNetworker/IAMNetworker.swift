@@ -40,9 +40,35 @@ public struct IAMNetworker {
         }
     }
 
+    public enum PlacesSort {
+        case popular
+        case newest
+
+        var toFoursquarePlaceSort: FoursquareClient.PlacesSort {
+            switch self {
+            case .popular: return .popular
+            case .newest: return .newest
+            }
+        }
+    }
+
+    public func getPlacePhotos(
+        of place: IAMNPlace,
+        sort: PlacesSort?,
+        limitTo limit: Int?,
+        preview: Bool = false) async -> Result<[IAMNPlacePhoto], IAMNetworkerErrors> {
+            guard !preview else { return .success(.preview) }
+            guard let foursquareClient = self.foursquareClient else { return .failure(.foursquareNotAuthorized) }
+            let result = await foursquareClient.getPlacePhotos(
+                of: place.id,
+                sort: sort?.toFoursquarePlaceSort,
+                limitTo: limit)
+            return result.mapError(handleError(_:))
+        }
+
     public func findNearbyPlaces(
         of coordinate: (lat: Double, lon: Double),
-        limitTo limit: Int,
+        limitTo limit: Int?,
         preview: Bool = false) async -> Result<IAMNPlacesResult, IAMNetworkerErrors> {
             guard !preview else { return .success(.preview) }
             guard let foursquareClient = self.foursquareClient else { return .failure(.foursquareNotAuthorized) }
