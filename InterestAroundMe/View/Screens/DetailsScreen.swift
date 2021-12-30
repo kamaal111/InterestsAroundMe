@@ -28,14 +28,7 @@ struct DetailsScreen: View {
         ScrollView(.vertical, showsIndicators: true) {
             VStack(alignment: .leading) {
                 if !viewModel.photos.isEmpty {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            ForEach(viewModel.photos, id: \.self) { photo in
-                                Image(uiImage: UIImage(data: photo)!)
-                                    .cornerRadius(16)
-                            }
-                        }
-                    }
+                    DetailsPhotosSection(photos: viewModel.photos)
                 }
                 if let categories = viewModel.place?.categories, !categories.isEmpty {
                     DetailsCategoriesSection(categories: categories)
