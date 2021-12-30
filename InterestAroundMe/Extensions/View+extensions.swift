@@ -1,5 +1,5 @@
 //
-//  View+Extensions.swift
+//  View+extensions.swift
 //  InterestAroundMe
 //
 //  Created by Kamaal M Farah on 30/12/2021.

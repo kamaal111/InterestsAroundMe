@@ -34,15 +34,21 @@ struct DetailsScreen: View {
                     }
                 }
             }
+            .frame(height: 200)
             if let categories = viewModel.place?.categories, !categories.isEmpty {
                 DetailsCategoriesSection(categories: categories)
                     .padding(.top, 8)
                     .padding(.leading, 4)
             }
-            VStack(alignment: .leading) {
-                
+            if let location = viewModel.place?.location,
+                (location.address != nil
+                 || location.locality != nil
+                 || (!(location.neighborhood ?? []).isEmpty)
+                 || location.region != nil) {
+                DetailsLocationSection(location: location)
+                    .padding(.vertical, 8)
+                    .padding(.leading, 4)
             }
-            .padding(.vertical, 8)
         }
         .padding(.horizontal, 8)
         .padding(.top, 16)
