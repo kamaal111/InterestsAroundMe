@@ -8,11 +8,17 @@
 import Foundation
 import XiphiasNet
 
+/// Main networking layer of the app
 public struct IAMNetworker {
     private var foursquareClient: FoursquareClient?
 
     private var kowalskiAnalysis: Bool
 
+    /// IAMNetworker initializer.
+    /// If the Foursquare client is necessary, then the `foursquareAPIKey` param must not be `nil`.
+    /// - Parameters:
+    ///   - foursquareAPIKey: Foursquares client API key
+    ///   - kowalskiAnalysis: when in need of more logging set this to true
     public init(foursquareAPIKey: String? = nil, kowalskiAnalysis: Bool = false) {
         if let foursquareAPIKey = foursquareAPIKey {
             self.foursquareClient = FoursquareClient(apiKey: foursquareAPIKey)
@@ -40,8 +46,11 @@ public struct IAMNetworker {
         }
     }
 
+    /// Sorting methods on the Foursquare client
     public enum PlacesSort {
+        /// Sort by popularity
         case popular
+        /// Sort from newest
         case newest
 
         var toFoursquarePlaceSort: FoursquareClient.PlacesSort {
@@ -52,6 +61,13 @@ public struct IAMNetworker {
         }
     }
 
+    /// To get the tips of the given place
+    /// - Parameters:
+    ///   - place: the place to get the tips from
+    ///   - sort: sorting method
+    ///   - limit: maximum amount of items. By default this is 10, maximum is 50 and minimum 1.
+    ///   - preview: if to return preview data
+    /// - Returns: on success returns a Array of ``IAMNPlaceTip``.
     public func getPlaceTips(
         of place: IAMNPlace,
         sort: PlacesSort?,
@@ -66,6 +82,13 @@ public struct IAMNetworker {
             return result.mapError(handleError(_:))
         }
 
+    /// To get the plhotos of the given place
+    /// - Parameters:
+    ///   - place: the place to get the photos from
+    ///   - sort: sorting method
+    ///   - limit: maximum amount of items. By default this is 10, maximum is 50 and minimum 1.
+    ///   - preview: if to return preview data
+    /// - Returns: on success returns a Array of ``IAMNPlacePhoto``.
     public func getPlacePhotos(
         of place: IAMNPlace,
         sort: PlacesSort?,
@@ -80,6 +103,12 @@ public struct IAMNetworker {
             return result.mapError(handleError(_:))
         }
 
+    /// To find nearby places depending on the given coordinates given
+    /// - Parameters:
+    ///   - coordinate: a tupple of `(latitude, longitude)`
+    ///   - limit: maximum amount of items. By default this is 10, maximum is 50 and minimum 1.
+    ///   - preview: if to return preview data
+    /// - Returns: on success returns ``IAMNPlacesResult``.
     public func findNearbyPlaces(
         of coordinate: (lat: Double, lon: Double),
         limitTo limit: Int?,

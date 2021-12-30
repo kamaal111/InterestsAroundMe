@@ -20,6 +20,7 @@ public struct IAMNPlaceTip: Codable, Hashable, Identifiable {
 }
 
 extension Array where Element == IAMNPlaceTip {
+    /// ``IAMNPlaceTip`` preview data
     public static let preview: [IAMNPlaceTip] = {
         let data = """
 [

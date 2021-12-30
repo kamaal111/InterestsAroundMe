@@ -37,6 +37,7 @@ public struct IAMNPlacePhoto: Codable, Hashable, Identifiable {
 }
 
 extension Array where Element == IAMNPlacePhoto {
+    /// ``IAMNPlacePhoto`` preview data
     public static var preview: [IAMNPlacePhoto] = {
         let data = """
         [

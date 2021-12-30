@@ -96,6 +96,7 @@ public struct IAMNLocation: Codable, Hashable {
 public struct IAMNRelatedPlaces: Codable, Hashable { }
 
 extension IAMNPlacesResult {
+    /// ``IAMNPlacesResult`` preview data
     public static let preview: Self = {
         let data = """
 {
