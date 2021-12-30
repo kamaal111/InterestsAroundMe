@@ -8,7 +8,6 @@
 import SwiftUI
 import IAMNetworker
 import PopperUp
-import SalmonUI
 import os.log
 
 struct DetailsScreen: View {
@@ -26,36 +25,37 @@ struct DetailsScreen: View {
     }
 
     var body: some View {
-        VStack(alignment: .leading) {
-            if !viewModel.photos.isEmpty {
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(viewModel.photos, id: \.self) { photo in
-                            Image(uiImage: UIImage(data: photo)!)
-                                .cornerRadius(16)
+        ScrollView(.vertical, showsIndicators: true) {
+            VStack(alignment: .leading) {
+                if !viewModel.photos.isEmpty {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(viewModel.photos, id: \.self) { photo in
+                                Image(uiImage: UIImage(data: photo)!)
+                                    .cornerRadius(16)
+                            }
                         }
                     }
                 }
+                if let categories = viewModel.place?.categories, !categories.isEmpty {
+                    DetailsCategoriesSection(categories: categories)
+                        .padding(.top, 8)
+                        .padding(.leading, 4)
+                }
+                if !viewModel.tips.isEmpty {
+                    DetailsTipsSection(tips: viewModel.tips)
+                        .padding(.top, 8)
+                        .padding(.leading, 4)
+                }
+                if let location = viewModel.place?.location, viewModel.showLocationSection {
+                    DetailsLocationSection(location: location)
+                        .padding(.vertical, 8)
+                        .padding(.leading, 4)
+                }
             }
-            if let categories = viewModel.place?.categories, !categories.isEmpty {
-                DetailsCategoriesSection(categories: categories)
-                    .padding(.top, 8)
-                    .padding(.leading, 4)
-            }
-            if !viewModel.tips.isEmpty {
-                DetailsTipsSection(tips: viewModel.tips)
-                    .padding(.top, 8)
-                    .padding(.leading, 4)
-            }
-            if let location = viewModel.place?.location, viewModel.showLocationSection {
-                DetailsLocationSection(location: location)
-                    .padding(.vertical, 8)
-                    .padding(.leading, 4)
-            }
+            .padding(.horizontal, 8)
+            .padding(.top, 16)
         }
-        .padding(.horizontal, 8)
-        .padding(.top, 16)
-        .ktakeSizeEagerly(alignment: .topLeading)
         .navigationTitle(Text(viewModel.place?.name ?? "Details"))
         .navigationBarTitleDisplayMode(.inline)
         .onChange(of: viewModel.error, perform: { newValue in
