@@ -34,7 +34,7 @@ extension HomeScreen {
 
                 let result = await networker.findNearbyPlaces(
                     of: userCoordinates,
-                    limitTo: 5,
+                    limitTo: Features.initialPlacesLimit,
                     preview: preview)
                 let places: [IAMNPlace]
                 switch result {

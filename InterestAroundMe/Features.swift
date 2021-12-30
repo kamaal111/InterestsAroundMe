@@ -8,6 +8,8 @@
 import Foundation
 
 enum Features {
-    static let previewFoursqareData = true
+    static let previewFoursquareData = true
     static let loadUserLocationOnce = true
+    static let initialPlacesLimit = 5
+    static let placePhotosLimit = 5
 }

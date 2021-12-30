@@ -45,11 +45,14 @@ struct HomeScreen: View {
     }
 
     private func handleLocationErrorChange(_ newValue: LocationManager.Errors?) {
-        guard let error = newValue else { return }
+        guard let error = newValue else {
+            popperUpManager.hidePopup()
+            return
+        }
         popperUpManager.showPopup(
             ofType: .error,
             title: "Sorry",
-            description: error.localizedDescription,
+            description: error.errorDescription,
             timeout: 3)
     }
 

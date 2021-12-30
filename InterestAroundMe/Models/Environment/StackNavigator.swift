@@ -19,8 +19,8 @@ final class StackNavigator: ObservableObject {
         var view: some View {
             ZStack {
                 switch self {
-                case .home: HomeScreen()
-                case .details: DetailsScreen()
+                case .home: HomeScreen(preview: Features.previewFoursquareData)
+                case .details: DetailsScreen(preview: Features.previewFoursquareData)
                 }
             }
         }

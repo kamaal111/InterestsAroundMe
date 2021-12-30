@@ -14,7 +14,7 @@ struct ContentView: View {
 
     var body: some View {
         NavigationView {
-            HomeScreen(preview: Features.previewFoursqareData)
+            HomeScreen(preview: Features.previewFoursquareData)
         }
         .navigationViewStyle(StackNavigationViewStyle())
         .environmentObject(locationManager)

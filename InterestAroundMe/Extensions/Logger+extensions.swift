@@ -12,5 +12,6 @@ extension Logger {
     private static let bundleIdentifier = Bundle.main.bundleIdentifier!
 
     static let homeScreen = Logger(subsystem: bundleIdentifier, category: "HomeScreen")
+    static let detailScreen = Logger(subsystem: bundleIdentifier, category: "DetailScreen")
     static let locationManager = Logger(subsystem: bundleIdentifier, category: "LocationManager")
 }
