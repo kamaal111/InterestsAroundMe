@@ -19,6 +19,7 @@ extension DetailsScreen {
         }
         @Published private(set) var error: Errors?
         @Published private(set) var photos: [Data] = []
+        @Published private(set) var tips: [IAMNPlaceTip] = []
 
         private var preview = false
         private let networker = IAMNetworker(foursquareAPIKey: Config.foursquareApiKey, kowalskiAnalysis: false)
@@ -36,6 +37,31 @@ extension DetailsScreen {
         private func placeDidSet() {
             guard let place = self.place else { return }
 
+            getPhotos(of: place)
+            getTips(of: place)
+        }
+
+        private func getTips(of place: IAMNPlace) {
+            Task {
+                let result = await networker.getPlaceTips(
+                    of: place,
+                    sort: .popular,
+                    limitTo: Features.placePhotosLimit,
+                    preview: preview)
+                let tips: [IAMNPlaceTip]
+                switch result {
+                case .failure(let failure):
+                    error = .photoFetch
+                    Logger.detailScreen.error("error while fetching places tips; \(failure.errorDescription);")
+                    return
+                case .success(let success): tips = success
+                }
+
+                self.tips = tips
+            }
+        }
+
+        private func getPhotos(of place: IAMNPlace) {
             Task {
                 let result = await networker.getPlacePhotos(
                     of: place,
@@ -71,10 +97,12 @@ extension DetailsScreen {
 extension DetailsScreen.ViewModel {
     enum Errors: Error, LocalizedError {
         case photoFetch
+        case tipsFetch
 
         var errorDescription: String {
             switch self {
             case .photoFetch: return "Something went wrong while getting this places photos"
+            case .tipsFetch: return "Something went wrong while getting this places tips"
             }
         }
     }

@@ -52,6 +52,20 @@ public struct IAMNetworker {
         }
     }
 
+    public func getPlaceTips(
+        of place: IAMNPlace,
+        sort: PlacesSort?,
+        limitTo limit: Int?,
+        preview: Bool = false) async -> Result<[IAMNPlaceTip], IAMNetworkerErrors> {
+            guard !preview else { return .success(.preview) }
+            guard let foursquareClient = self.foursquareClient else { return .failure(.foursquareNotAuthorized) }
+            let result = await foursquareClient.getPlaceTips(
+                of: place.id,
+                sort: sort?.toFoursquarePlaceSort,
+                limitTo: limit)
+            return result.mapError(handleError(_:))
+        }
+
     public func getPlacePhotos(
         of place: IAMNPlace,
         sort: PlacesSort?,

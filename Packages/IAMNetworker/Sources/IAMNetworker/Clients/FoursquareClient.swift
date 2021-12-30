@@ -24,6 +24,16 @@ struct FoursquareClient {
         ]
     }
 
+    func getPlaceTips(
+        of placeID: String,
+        sort: PlacesSort?,
+        limitTo limit: Int?) async -> Result<[IAMNPlaceTip], XiphiasNet.Errors> {
+            let result: Result<Response<[IAMNPlaceTip]>, XiphiasNet.Errors> = await XiphiasNet.request(
+                from: .foursquarePlaceTips(placeID: placeID, sort: sort, limit: limit),
+                headers: defaultHeaders)
+            return result.map(\.data)
+    }
+
     func getPlacePhotos(
         of placeID: String,
         sort: PlacesSort?,
@@ -46,6 +56,17 @@ struct FoursquareClient {
 
 extension Endpoint {
     private static let foursquareHost = "api.foursquare.com"
+
+    static func foursquarePlaceTips(placeID: String, sort: FoursquareClient.PlacesSort?, limit: Int?) -> Endpoint {
+        var queryItems: [URLQueryItem] = []
+        if let sort = sort {
+            queryItems.append(.init(name: "sort", value: sort.rawValue))
+        }
+        if let limit = limit {
+            queryItems.append(.init(name: "limit", value: "\(limit)"))
+        }
+        return Endpoint(host: foursquareHost, path: "v3/places/\(placeID)/tips", queryItems: queryItems)
+    }
 
     static func foursquarePlacePhotos(placeID: String, sort: FoursquareClient.PlacesSort?, limit: Int?) -> Endpoint {
         var queryItems: [URLQueryItem] = []
