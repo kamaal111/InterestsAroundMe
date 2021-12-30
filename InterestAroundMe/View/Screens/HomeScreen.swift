@@ -28,11 +28,21 @@ struct HomeScreen: View {
     var body: some View {
         VStack {
             List {
-                ForEach(viewModel.places) { place in
-                    InterestPlace(
-                        place: place,
-                        imageData: viewModel.getExtraSmallCategoryIconImageData(place.categories.first),
-                        action: { stackNavigator.navigate(to: .details, options: ["place": place]) })
+                if !locationManager.locationIsAccessible {
+                    Text("We need your current location to get the nearby venues")
+                        .font(.title3)
+                        .bold()
+                } else if viewModel.places.isEmpty {
+                    Text("No nearby venues")
+                        .font(.title3)
+                        .bold()
+                } else {
+                    ForEach(viewModel.places) { place in
+                        InterestPlace(
+                            place: place,
+                            imageData: viewModel.getExtraSmallCategoryIconImageData(place.categories.first),
+                            action: { stackNavigator.navigate(to: .details, options: ["place": place]) })
+                    }
                 }
             }
         }

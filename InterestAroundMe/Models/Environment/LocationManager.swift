@@ -13,8 +13,7 @@ final class LocationManager: NSObject, ObservableObject {
 
     @Published private(set) var error: Errors?
     @Published private(set) var userLocation: CLLocation?
-
-    private var locationIsAccessible = false
+    @Published private(set) var locationIsAccessible = false
 
     private let manager = CLLocationManager()
 
