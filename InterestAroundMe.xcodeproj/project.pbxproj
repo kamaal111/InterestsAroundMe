@@ -82,8 +82,8 @@
 		2C2C8805277C875C0028E592 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				2C2C8806277C876D0028E592 /* Logger+extensions.swift */,
 				2C74878E277E0CFC00E78934 /* Array+extensions.swift */,
+				2C2C8806277C876D0028E592 /* Logger+extensions.swift */,
 				2C748786277DE50300E78934 /* View+extensions.swift */,
 			);
 			path = Extensions;

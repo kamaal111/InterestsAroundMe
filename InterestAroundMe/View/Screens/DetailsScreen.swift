@@ -27,15 +27,16 @@ struct DetailsScreen: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(viewModel.photos, id: \.self) { photo in
-                        Image(uiImage: UIImage(data: photo)!)
-                            .cornerRadius(16)
+            if !viewModel.photos.isEmpty {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(viewModel.photos, id: \.self) { photo in
+                            Image(uiImage: UIImage(data: photo)!)
+                                .cornerRadius(16)
+                        }
                     }
                 }
             }
-            .frame(height: 200)
             if let categories = viewModel.place?.categories, !categories.isEmpty {
                 DetailsCategoriesSection(categories: categories)
                     .padding(.top, 8)

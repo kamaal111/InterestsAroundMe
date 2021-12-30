@@ -17,7 +17,11 @@ struct DetailsTipsSection: View {
                 .font(.title3)
                 .bold()
             ForEach(tips.enumerated().map(\.offset), id: \.self) { index in
-                Text("\(index + 1). \(tips[index].text)")
+                HStack(alignment: .top) {
+                    Text("\(index + 1).")
+                        .padding(.trailing, 2)
+                    Text("\(tips[index].text)")
+                }
             }
         }
     }
