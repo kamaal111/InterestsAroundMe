@@ -14,6 +14,7 @@
 		2C517A30277C7F220033F791 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C517A2F277C7F220033F791 /* Config.swift */; };
 		2C517A34277C805C0033F791 /* HomeScreen+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C517A33277C805C0033F791 /* HomeScreen+ViewModel.swift */; };
 		2C517A36277C83100033F791 /* Features.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C517A35277C83100033F791 /* Features.swift */; };
+		2C748783277DD0E200E78934 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C748782277DD0E200E78934 /* LocationManager.swift */; };
 		2CCCCA0D277B3C34006185EA /* InterestAroundMeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCCCA0C277B3C34006185EA /* InterestAroundMeApp.swift */; };
 		2CCCCA0F277B3C34006185EA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CCCCA0E277B3C34006185EA /* ContentView.swift */; };
 		2CCCCA11277B3C3C006185EA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2CCCCA10277B3C3C006185EA /* Assets.xcassets */; };
@@ -28,10 +29,12 @@
 /* Begin PBXFileReference section */
 		2C2C8806277C876D0028E592 /* Logger+extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Logger+extensions.swift"; sourceTree = "<group>"; };
 		2C2C8809277C8BD30028E592 /* InterestPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestPlace.swift; sourceTree = "<group>"; };
+		2C2C880E277CA20E0028E592 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		2C517A2D277C7E910033F791 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
 		2C517A2F277C7F220033F791 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		2C517A33277C805C0033F791 /* HomeScreen+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HomeScreen+ViewModel.swift"; sourceTree = "<group>"; };
 		2C517A35277C83100033F791 /* Features.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features.swift; sourceTree = "<group>"; };
+		2C748782277DD0E200E78934 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		2CB2E632277B57FB00442AFB /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		2CB2E633277B581400442AFB /* pre_compile.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = pre_compile.sh; sourceTree = "<group>"; };
 		2CB2E636277B5F3900442AFB /* URLs.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = URLs.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -101,6 +104,14 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		2C748781277DD0B300E78934 /* Environment */ = {
+			isa = PBXGroup;
+			children = (
+				2C748782277DD0E200E78934 /* LocationManager.swift */,
+			);
+			path = Environment;
+			sourceTree = "<group>";
+		};
 		2CB2E62E277B56BF00442AFB /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				2CB2E630277B56D200442AFB /* CoreData */,
+				2C748781277DD0B300E78934 /* Environment */,
 				2C517A31277C80330033F791 /* ViewModels */,
 			);
 			path = Models;
@@ -166,12 +178,13 @@
 		2CCCCA0B277B3C33006185EA /* InterestAroundMe */ = {
 			isa = PBXGroup;
 			children = (
-				2C2C8805277C875C0028E592 /* Extensions */,
+				2C2C880E277CA20E0028E592 /* Info.plist */,
 				2C517A2F277C7F220033F791 /* Config.swift */,
 				2CCCCA0E277B3C34006185EA /* ContentView.swift */,
 				2C517A35277C83100033F791 /* Features.swift */,
 				2CCCCA0C277B3C34006185EA /* InterestAroundMeApp.swift */,
 				2CCCCA10277B3C3C006185EA /* Assets.xcassets */,
+				2C2C8805277C875C0028E592 /* Extensions */,
 				2CB2E62F277B56CC00442AFB /* Models */,
 				2CCCCA12277B3C3C006185EA /* Preview Content */,
 				2CB2E62E277B56BF00442AFB /* Utilities */,
@@ -309,6 +322,7 @@
 				2C517A36277C83100033F791 /* Features.swift in Sources */,
 				2CCCCA16277B3C3C006185EA /* Persistence.swift in Sources */,
 				2C517A2E277C7E910033F791 /* HomeScreen.swift in Sources */,
+				2C748783277DD0E200E78934 /* LocationManager.swift in Sources */,
 				2CCCCA0F277B3C34006185EA /* ContentView.swift in Sources */,
 				2CCCCA19277B3C3C006185EA /* InterestAroundMe.xcdatamodeld in Sources */,
 				2CCCCA0D277B3C34006185EA /* InterestAroundMeApp.swift in Sources */,
@@ -449,6 +463,7 @@
 				DEVELOPMENT_TEAM = DXUKH9VF73;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InterestAroundMe/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -479,6 +494,7 @@
 				DEVELOPMENT_TEAM = DXUKH9VF73;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = InterestAroundMe/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

@@ -9,5 +9,8 @@ import Foundation
 import os.log
 
 extension Logger {
-    static let homeScreen = Logger(subsystem: Bundle.main.bundleIdentifier!, category: "HomeScreen")
+    private static let bundleIdentifier = Bundle.main.bundleIdentifier!
+
+    static let homeScreen = Logger(subsystem: bundleIdentifier, category: "HomeScreen")
+    static let locationManager = Logger(subsystem: bundleIdentifier, category: "LocationManager")
 }

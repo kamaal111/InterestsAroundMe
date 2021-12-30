@@ -10,12 +10,14 @@ import PopperUp
 
 struct ContentView: View {
     @StateObject private var popperUpManager = PopperUpManager()
+    @StateObject private var locationManager = LocationManager()
 
     var body: some View {
         NavigationView {
             HomeScreen(preview: Features.previewFoursqareData)
         }
         .navigationViewStyle(StackNavigationViewStyle())
+        .environmentObject(locationManager)
         .withPopperUp(popperUpManager)
     }
 }
@@ -24,5 +26,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
             .environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            .environmentObject(LocationManager())
+            .withPopperUp(PopperUpManager())
     }
 }

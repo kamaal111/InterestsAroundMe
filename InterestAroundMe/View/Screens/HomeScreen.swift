@@ -12,6 +12,8 @@ import os.log
 struct HomeScreen: View {
     @EnvironmentObject
     private var popperUpManager: PopperUpManager
+    @EnvironmentObject
+    private var locationManager: LocationManager
 
     @StateObject private var viewModel = ViewModel()
 
@@ -46,15 +48,17 @@ struct HomeScreen: View {
                 popperUpManager.showPopup(
                     ofType: .error,
                     title: "Sorry",
-                    description: "Something went wrong while fetching data")
+                    description: "Something went wrong while fetching nearby venues")
             }
         }
+        locationManager.requestPermission()
     }
 }
 
 struct HomeScreen_Previews: PreviewProvider {
     static var previews: some View {
         HomeScreen(preview: true)
+            .environmentObject(LocationManager())
             .withPopperUp(PopperUpManager())
     }
 }
