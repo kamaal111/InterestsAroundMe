@@ -11,7 +11,10 @@ import os.log
 
 final class LocationManager: NSObject, ObservableObject {
 
-    @Published private var locationIsAccessible = false
+    @Published private(set) var error: Errors?
+    @Published private(set) var userLocation: CLLocation?
+
+    private var locationIsAccessible = false
 
     private let manager = CLLocationManager()
 
@@ -21,22 +24,52 @@ final class LocationManager: NSObject, ObservableObject {
         manager.delegate = self
     }
 
+    enum Errors: Error, LocalizedError {
+        case generalError
+
+        var errorDescription: String {
+            switch self {
+            case .generalError: return "Something went wrong while getting your location"
+            }
+        }
+    }
+
     func requestPermission() {
         manager.requestWhenInUseAuthorization()
+    }
+
+    private func handleLocationAuthorized() {
+        DispatchQueue.main.async { [weak self] in
+            self?.locationIsAccessible = true
+        }
+        manager.startUpdatingLocation()
     }
 
 }
 
 extension LocationManager: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        DispatchQueue.main.async { [weak self] in
+            self?.userLocation = location
+        }
+    }
+
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        DispatchQueue.main.async { [weak self] in
+            self?.error = .generalError
+        }
+        Logger.locationManager.warning(
+            "something went wrong in the location manager; error: \(error.localizedDescription)")
+    }
+
     func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
         let status = manager.authorizationStatus
         DispatchQueue.main.async { [weak self] in
             guard let self = self else { return }
             switch status {
-            case .notDetermined, .restricted, .denied:
-                self.locationIsAccessible = false
-            case .authorizedWhenInUse, .authorizedAlways:
-                self.locationIsAccessible = true
+            case .notDetermined, .restricted, .denied: self.locationIsAccessible = false
+            case .authorizedWhenInUse, .authorizedAlways: self.handleLocationAuthorized()
             @unknown default:
                 Logger.locationManager.warning("unknown location status of \(status.rawValue)")
                 self.locationIsAccessible = false

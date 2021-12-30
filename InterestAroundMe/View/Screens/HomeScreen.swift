@@ -37,6 +37,16 @@ struct HomeScreen: View {
         .navigationTitle(Text("Interests"))
         .navigationBarTitleDisplayMode(.large)
         .onAppear(perform: handleOnAppear)
+        .onChange(of: locationManager.error, perform: handleLocationErrorChange(_:))
+    }
+
+    private func handleLocationErrorChange(_ newValue: LocationManager.Errors?) {
+        guard let error = newValue else { return }
+        popperUpManager.showPopup(
+            ofType: .error,
+            title: "Sorry",
+            description: error.localizedDescription,
+            timeout: 3)
     }
 
     private func handleOnAppear() {
