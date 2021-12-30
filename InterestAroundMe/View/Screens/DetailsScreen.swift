@@ -8,6 +8,7 @@
 import SwiftUI
 import IAMNetworker
 import PopperUp
+import SalmonUI
 
 struct DetailsScreen: View {
     @EnvironmentObject
@@ -25,8 +26,20 @@ struct DetailsScreen: View {
 
     var body: some View {
         VStack {
-            Text("Hello, World!")
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(viewModel.photos, id: \.self) { photo in
+                        Image(uiImage: UIImage(data: photo)!)
+                            .cornerRadius(16)
+                    }
+                }
+            }
         }
+        .padding(.horizontal, 8)
+        .padding(.top, 16)
+        .ktakeSizeEagerly(alignment: .top)
+        .navigationTitle(Text(viewModel.place?.name ?? "Details"))
+        .navigationBarTitleDisplayMode(.inline)
         .onChange(of: viewModel.error, perform: { newValue in
             guard let error = newValue else {
                 popperUpManager.hidePopup()
@@ -41,6 +54,7 @@ struct DetailsScreen: View {
         .onAppear(perform: {
             viewModel.setPreview(preview)
             guard let place = stackNavigator.currentOptions?["place"] as? IAMNPlace else { return }
+            print(place)
             viewModel.setPlace(place)
         })
     }

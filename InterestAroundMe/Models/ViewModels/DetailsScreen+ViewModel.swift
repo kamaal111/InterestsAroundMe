@@ -8,6 +8,7 @@
 import Foundation
 import IAMNetworker
 import os.log
+import ShrimpExtensions
 
 extension DetailsScreen {
     @MainActor
@@ -17,9 +18,9 @@ extension DetailsScreen {
             didSet { placeDidSet() }
         }
         @Published private(set) var error: Errors?
-        @Published private var photos: [IAMNPlacePhoto] = []
+        @Published private(set) var photos: [Data] = []
 
-        private var preview: Bool = false
+        private var preview = false
         private let networker = IAMNetworker(foursquareAPIKey: Config.foursquareApiKey, kowalskiAnalysis: false)
 
         init() { }
@@ -39,7 +40,8 @@ extension DetailsScreen {
                 let result = await networker.getPlacePhotos(
                     of: place,
                     sort: .popular,
-                    limitTo: Features.placePhotosLimit)
+                    limitTo: Features.placePhotosLimit,
+                    preview: preview)
                 let photos: [IAMNPlacePhoto]
                 switch result {
                 case .failure(let failure):
@@ -50,6 +52,16 @@ extension DetailsScreen {
                 }
 
                 self.photos = photos
+                    .compactMap({
+                        guard let url = $0.photoURL(ofSize: .squared(200)) else { return nil }
+                        do {
+                            return try Data(contentsOf: url)
+                        } catch {
+                            Logger.detailScreen.error(
+                                "something went wrong while fetching data from photo; \(error.localizedDescription)")
+                            return nil
+                        }
+                    })
             }
         }
 

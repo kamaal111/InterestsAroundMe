@@ -6,11 +6,13 @@
 //
 
 import Foundation
+import CoreGraphics
 
 public struct IAMNPlacePhoto: Codable, Hashable, Identifiable {
     public var id: String
     public var createdAt: String
     public var prefix: String
+    public var suffix: String
     public var width: Int
     public var height: Int
 
@@ -18,8 +20,19 @@ public struct IAMNPlacePhoto: Codable, Hashable, Identifiable {
         case id
         case createdAt = "created_at"
         case prefix
+        case suffix
         case width
         case height
+    }
+
+    public func photoURL(ofSize size: CGSize? = nil) -> URL? {
+        let sizeName: String
+        if let size = size {
+            sizeName = "\(Int(size.width))x\(Int(size.height))"
+        } else {
+            sizeName = "original"
+        }
+        return URL(string: prefix.appending(sizeName).appending(suffix))
     }
 }
 
