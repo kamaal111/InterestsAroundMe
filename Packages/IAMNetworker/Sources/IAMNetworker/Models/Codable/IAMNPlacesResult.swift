@@ -72,14 +72,14 @@ public struct IAMNGeocode: Codable, Hashable {
 }
 
 public struct IAMNLocation: Codable, Hashable {
-    public var address: String
+    public var address: String?
     public var country: String
-    public var crossStreet: String
-    public var dma: String
-    public var locality: String
-    public var neighborhood: [String]
+    public var crossStreet: String?
+    public var dma: String?
+    public var locality: String?
+    public var neighborhood: [String]?
     public var postcode: String
-    public var region: String
+    public var region: String?
 
     enum CodingKeys: String, CodingKey {
         case address

@@ -31,11 +31,15 @@ struct InterestPlace: View {
                         .font(.headline)
                         .bold()
                         .foregroundColor(.primary)
-                    Text(place.location.address)
-                        .foregroundColor(.primary)
-                    Text(place.location.dma)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
+                    if let address = place.location.address {
+                        Text(address)
+                            .foregroundColor(.primary)
+                    }
+                    if let locality = place.location.locality {
+                        Text(locality)
+                            .font(.subheadline)
+                            .foregroundColor(.secondary)
+                    }
                 }
             }
         }

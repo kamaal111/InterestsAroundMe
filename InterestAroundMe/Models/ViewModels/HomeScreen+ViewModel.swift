@@ -15,6 +15,8 @@ extension HomeScreen {
         @Published private(set) var places: [IAMNPlace] = []
         @Published private(set) var categoryIcons: [String: Data] = [:]
 
+        private var initialViewDataLoaded = false
+
         private let networker = IAMNetworker(foursquareAPIKey: Config.foursquareApiKey, kowalskiAnalysis: false)
 
         init() { }
@@ -25,16 +27,27 @@ extension HomeScreen {
             return categoryIcons[key]
         }
 
-        func loadViewData(preview: Bool = false) async throws {
-            let result = try await networker.findNearbyPlaces(
-                of: (41.8781, -87.6298),
-                limitTo: 5,
-                preview: preview)
-                .get()
-            places = result.results
+        func loadViewData(
+            userCoordinates: (lat: Double, lon: Double),
+            preview: Bool = false) async -> Result<Void, IAMNetworker.IAMNetworkerErrors> {
+                guard !initialViewDataLoaded else { return .success(Void()) }
 
-            loadCategoryIcons(fromPlaces: result.results)
-        }
+                let result = await networker.findNearbyPlaces(
+                    of: userCoordinates,
+                    limitTo: 5,
+                    preview: preview)
+                let places: [IAMNPlace]
+                switch result {
+                case .failure(let failure): return .failure(failure)
+                case .success(let success): places = success.results
+                }
+
+                initialViewDataLoaded = true
+                self.places = places
+
+                loadCategoryIcons(fromPlaces: places)
+                return .success(Void())
+            }
 
         private func loadCategoryIcons(fromPlaces places: [IAMNPlace]) {
             Task(priority: .background) {

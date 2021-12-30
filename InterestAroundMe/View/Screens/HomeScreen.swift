@@ -8,6 +8,7 @@
 import SwiftUI
 import PopperUp
 import os.log
+import CoreLocation
 
 struct HomeScreen: View {
     @EnvironmentObject
@@ -38,6 +39,7 @@ struct HomeScreen: View {
         .navigationBarTitleDisplayMode(.large)
         .onAppear(perform: handleOnAppear)
         .onChange(of: locationManager.error, perform: handleLocationErrorChange(_:))
+        .onChange(of: locationManager.userLocation, perform: loadInitialViewData(_:))
     }
 
     private func handleLocationErrorChange(_ newValue: LocationManager.Errors?) {
@@ -50,18 +52,29 @@ struct HomeScreen: View {
     }
 
     private func handleOnAppear() {
+        locationManager.requestPermission()
+
+        loadInitialViewData(locationManager.userLocation)
+    }
+
+    private func loadInitialViewData(_ userLocation: CLLocation?) {
+        guard let userLocation = userLocation else { return }
+
+        let userCoordinates = userLocation.coordinate
         Task {
-            do {
-                try await viewModel.loadViewData(preview: preview)
-            } catch {
-                Logger.homeScreen.error("Hello \(error.localizedDescription)")
+            let result = await viewModel.loadViewData(
+                userCoordinates: (userCoordinates.latitude, userCoordinates.longitude),
+                preview: preview)
+            switch result {
+            case .failure(let failure):
+                Logger.homeScreen.error("error while loading view data; \(failure.errorDescription);")
                 popperUpManager.showPopup(
                     ofType: .error,
                     title: "Sorry",
                     description: "Something went wrong while fetching nearby venues")
+            case .success: break
             }
         }
-        locationManager.requestPermission()
     }
 }
 

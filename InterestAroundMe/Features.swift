@@ -9,4 +9,5 @@ import Foundation
 
 enum Features {
     static let previewFoursqareData = true
+    static let loadUserLocationOnce = true
 }
